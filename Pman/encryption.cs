@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
 namespace Pman
 {
-    class encryption
+    class Encryption
     {
-        static public byte[] generateSalt()
+        public static byte[] generateSalt()
         {
             // Generate a random salt
             byte[] salt = new byte[128 / 8];
