@@ -12,13 +12,31 @@ namespace Pman
     internal class dbConnection
     {
 
-        const string connectionString = "Data Source=mainDb.db;";
-        private static SQLiteConnection conn;
+        const string connectionString = "Data Source=mainDb.db";
+        private SQLiteConnection conn;
 
+        //singleton pattern.
+        private static dbConnection _instance = null;
+        public static dbConnection GetInstance()
+        {
+            if (_instance == null)
+            {
+                _instance = new dbConnection();
+                    
+            }
+            return _instance;
+        }
         public dbConnection()
         {
             conn = new SQLiteConnection(connectionString);
+            conn.Open();
+            createTables();
         }
+        ~dbConnection()
+        {
+            conn.Close();
+        }
+
 
         /// <summary>
         /// create tables of db if not already exists
@@ -26,7 +44,7 @@ namespace Pman
         public void createTables()
         {
             string query = "CREATE TABLE IF NOT EXISTS 'users' ('username' TEXT,'password' TEXT, 'email' TEXT,'salt' TEXT, PRIMARY KEY('username'));";
-            var command = new SQLiteCommand(query);
+            var command = new SQLiteCommand(query, conn);
             command.ExecuteNonQuery();
         }
 
@@ -41,27 +59,47 @@ namespace Pman
                 curr.username = reader["username"].ToString();
                 curr.password = reader["password"].ToString();
                 curr.email = reader["email"].ToString();
-                curr.salt = reader["salt"].ToString();
+                curr.salt = Convert.FromBase64String(reader["salt"].ToString());
             }
             return curr;
         }
 
         public int addUser(string username, string password , string email)
         {
-            string query = "INSERT INTO users(username, password, email, salt) VALUES(@username, @password, @email, @salt);";
+            user check = getUserDetailsByUsername (username);
+            //check if user already exists.
+            if(check.username != null)
+            {
+                return 0;
+            }
+
+            string query = "INSERT INTO users (username, password, email, salt) VALUES(@username, @password, @email, @salt);";
             var command = new SQLiteCommand(query, conn);
             byte[] userSalt = Encryption.generateSalt();
             command.Parameters.AddWithValue("@username", username);
+            command.Parameters.AddWithValue("@password", Encryption.HashPass(password, userSalt));
             command.Parameters.AddWithValue("@email", email);
             command.Parameters.AddWithValue("@salt", Convert.ToBase64String(userSalt));
-            command.Parameters.AddWithValue("@password", Encryption.HashPass(password, userSalt));
+
             var result = command.ExecuteNonQuery();
             return result;
         }
 
         public bool AuthenticateUser(string username, string password)
         {
-            return true;
+            user check = getUserDetailsByUsername(username);
+            //check if user already exists.
+            if (check.username == null)
+            {
+                return false;
+            }
+
+            if(Encryption.HashPass(password, check.salt) == check.password)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
     

@@ -27,6 +27,33 @@ namespace Pman
         private void back(object sender, RoutedEventArgs e)
         {
 
+            var main = new MainWindow();
+            main.Show();
+            this.Close();
+        }
+
+        private void addUser(object sender, RoutedEventArgs e)
+        {
+            if(usernameB.Text.ToString().Length <= 0 ||
+                passwordB.Text.ToString().Length <= 0 ||
+                emailB.Text.ToString().Length <= 0) 
+            {
+                this.errB.Text = "err";
+            }
+
+            dbConnection db = dbConnection.GetInstance();
+            var res = db.addUser(usernameB.Text.ToString(),
+                passwordB.Text.ToString(),
+                emailB.Text.ToString());
+            if(res == 0) {
+                errB.Text = "Failed to add user";
+            }
+            else
+            {
+                errB.Text = "user entered succefully";
+            }
+                
+
         }
     }
 }

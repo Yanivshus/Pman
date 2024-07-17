@@ -7,12 +7,13 @@
         mc:Ignorable="d"
         Title="signup" Height="600" Width="800">
     <Grid>
-        <TextBox HorizontalAlignment="Center" Margin="0,180,0,0" TextWrapping="Wrap" Text="username" VerticalAlignment="Top" Width="300" Height="39" FontSize="20" />
-        <TextBox HorizontalAlignment="Center" Margin="0,234,0,0" TextWrapping="Wrap" Text="password" VerticalAlignment="Top" Width="300" Height="39" FontSize="20"/>
-        <TextBox HorizontalAlignment="Center" Margin="0,292,0,0" TextWrapping="Wrap" Text="email" VerticalAlignment="Top" Width="300" Height="39" FontSize="20"/>
-        
-        <Button Content="Sign up" HorizontalAlignment="Center" Margin="0,370,0,0" VerticalAlignment="Top" Height="36" Width="140" FontSize="20"/>
+        <TextBox HorizontalAlignment="Center" Margin="0,180,0,0" TextWrapping="Wrap" Text="username" VerticalAlignment="Top" Width="300" Height="39" FontSize="20" Name="usernameB"/>
+        <TextBox HorizontalAlignment="Center" Margin="0,234,0,0" TextWrapping="Wrap" Text="password" VerticalAlignment="Top" Width="300" Height="39" FontSize="20" Name="passwordB"/>
+        <TextBox HorizontalAlignment="Center" Margin="0,292,0,0" TextWrapping="Wrap" Text="email" VerticalAlignment="Top" Width="300" Height="39" FontSize="20" Name="emailB"/>
+
+        <Button Content="Sign up" HorizontalAlignment="Center" Margin="0,370,0,0" VerticalAlignment="Top" Height="36" Width="140" FontSize="20" Click="addUser"/>
         <Button Content="Back" HorizontalAlignment="Left" Margin="61,482,0,0" VerticalAlignment="Top" Height="36" Width="140" FontSize="20" Click="back"/>
-        
+        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="-0.74,4.071" Margin="0,336,0,0" Height="29" Width="300" TextAlignment="Center" FontSize="20" Name="errB"/>
+
     </Grid>
 </Window>
