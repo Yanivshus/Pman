@@ -25,8 +25,7 @@ namespace Pman
         }
 
         private void back(object sender, RoutedEventArgs e)
-        {
-
+        { 
             var main = new MainWindow();
             main.Left = this.Left;
             main.Top = this.Top;

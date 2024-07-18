@@ -21,16 +21,38 @@ namespace Pman
     {
         string username;
         string password;
-        byte[] salt;
+        byte[] key;
+        byte[] iv;
         public passWin(string usernameA, string passwordA, byte[] saltA)
         {
             InitializeComponent();
             username = usernameA;
             password = passwordA;
-            salt = saltA;
+            key = Encryption.DeriveEncryptionKey(passwordA, saltA);
+            iv = Encryption.DeriveEncryptionKey(passwordA, saltA);
         }
 
         private void addPasword(object sender, RoutedEventArgs e)
+        {
+            addPassW addW = new addPassW();
+            addW.Show();
+        }
+
+        private void logout(object sender, RoutedEventArgs e)
+        {
+            var main = new MainWindow();
+            main.Left = this.Left;
+            main.Top = this.Top;
+            main.Show();
+            this.Close();
+        }
+
+        private void refresh(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void refreshFeed()
         {
 
         }

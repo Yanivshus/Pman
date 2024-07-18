@@ -54,9 +54,7 @@ namespace Pman
                 numBytesRequested: 16);
         }
 
-
-
-        static byte[] Encrypt(string plainText, byte[] Key, byte[] IV)
+        static public byte[] Encrypt(string plainText, byte[] Key, byte[] IV)
         {
             byte[] encrypted;
             // Create a new AesManaged.
@@ -81,7 +79,7 @@ namespace Pman
             // Return encrypted data
             return encrypted;
         }
-        static string Decrypt(byte[] cipherText, byte[] Key, byte[] IV)
+        static public string Decrypt(byte[] cipherText, byte[] Key, byte[] IV)
         {
             string plaintext = null;
             // Create AesManaged

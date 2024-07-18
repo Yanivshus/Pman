@@ -35,22 +35,31 @@
         </Grid.RowDefinitions>
 
         <!-- Add Password Button -->
-        <Button Content="Add Password" HorizontalAlignment="Right" VerticalAlignment="Top" Click="addPasword" />
-        <TextBlock Text="" HorizontalAlignment="Left" VerticalAlignment="Center" Width="113" Height="38" FontSize="13" TextAlignment="Left"/>
+        <Button Content="Add Password" HorizontalAlignment="Center" VerticalAlignment="Top" Click="addPasword" />
+        <Button Content="Logout" HorizontalAlignment="Left" VerticalAlignment="Top" Click="logout" />
+        <Button Content="Rfresh" HorizontalAlignment="Left" VerticalAlignment="Center" Click="refresh" Margin="266,0,0,0" />
+        <TextBlock Text="" HorizontalAlignment="Left" VerticalAlignment="Center" Width="113" Height="38" FontSize="13" TextAlignment="Left" Margin="677,0,0,0" Name="usernameB"/>
 
         <!-- Scrollable ListView -->
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <ListView Name="PasswordListView">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Website" Width="400" DisplayMemberBinding="{Binding Website}">
+                        <GridViewColumn Header="Website" Width="267.67" DisplayMemberBinding="{Binding Website}">
                             <GridViewColumn.HeaderContainerStyle>
                                 <Style TargetType="GridViewColumnHeader">
                                     <Setter Property="IsHitTestVisible" Value="False" />
                                 </Style>
                             </GridViewColumn.HeaderContainerStyle>
                         </GridViewColumn>
-                        <GridViewColumn Header="Password" Width="400" DisplayMemberBinding="{Binding Password}">
+                        <GridViewColumn Header="Username" Width="267.67" DisplayMemberBinding="{Binding Username}">
+                            <GridViewColumn.HeaderContainerStyle>
+                                <Style TargetType="GridViewColumnHeader">
+                                    <Setter Property="IsHitTestVisible" Value="False" />
+                                </Style>
+                            </GridViewColumn.HeaderContainerStyle>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Password" Width="267.67" DisplayMemberBinding="{Binding Password}">
                             <GridViewColumn.HeaderContainerStyle>
                                 <Style TargetType="GridViewColumnHeader">
                                     <Setter Property="IsHitTestVisible" Value="False" />

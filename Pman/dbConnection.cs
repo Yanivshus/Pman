@@ -43,9 +43,15 @@ namespace Pman
         /// </summary>
         public void createTables()
         {
+            //main users table
             string query = "CREATE TABLE IF NOT EXISTS 'users' ('username' TEXT,'password' TEXT, 'email' TEXT,'salt' TEXT, PRIMARY KEY('username'));";
-            var command = new SQLiteCommand(query, conn);
-            command.ExecuteNonQuery();
+            var command1 = new SQLiteCommand(query, conn);
+            command1.ExecuteNonQuery();
+
+            //main users passwords table.
+            query = "CREATE TABLE IF NOT EXISTS 'mainPasswords' ('username' TEXT,'website' TEXT,'webpass' TEXT,'webuser' TEXT, FOREIGN KEY('username') REFERENCES 'users'('username'));";
+            var command2 = new SQLiteCommand(query, conn);
+            command2.ExecuteNonQuery();
         }
 
         public user getUserDetailsByUsername(string username)
@@ -100,6 +106,44 @@ namespace Pman
             }
 
             return false;
+        }
+
+        public int addPassword(string username, string password, string website, byte[] key, byte[] iv)
+        {
+            string query = "INSERT INTO mainPasswords (username, website, webpass, webuser) VALUES(@username, @website, @webpass, @webuser);";
+            var command = new SQLiteCommand(query, conn);
+
+            command.Parameters.AddWithValue("@username", username);
+            command.Parameters.AddWithValue("@website", website);
+            //encrypt both username and password using precreated key and iv.
+            command.Parameters.AddWithValue("@webpass",Convert.ToBase64String(Encryption.Encrypt(password, key, iv)));
+            command.Parameters.AddWithValue("@webuser", Convert.ToBase64String(Encryption.Encrypt(username, key, iv)));
+
+            var result = command.ExecuteNonQuery();
+           
+            return result;
+        }
+
+        public List<passEntry> getPassEntryByUsername(string username, byte[] key, byte[] iv)
+        {
+            string query = "SELECT * FROM mainPasswords WHERE username='" + username + "';";
+            var command = new SQLiteCommand(query, conn);
+            var reader = command.ExecuteReader();
+            List<passEntry> pList = new List<passEntry>();
+
+            //reading all the result.
+            while (reader.Read())
+            {
+                passEntry curr = new passEntry();
+                curr.username = reader["username"].ToString();
+                curr.website = reader["website"].ToString();
+                curr.webuser = Encryption.Decrypt(Convert.FromBase64String(reader["webuser"].ToString()), key, iv);
+                curr.webpass = Encryption.Decrypt(Convert.FromBase64String(reader["webpass"].ToString()), key, iv);
+
+                pList.Add(curr);
+            }
+
+            return pList;
         }
     }
     

@@ -57,7 +57,7 @@ namespace Pman
                 }
                 else
                 {
-                    errB.Text = "failed";
+                    errB.Text = "Login failed! username or password are wrong.";
                 }
             }
         }
