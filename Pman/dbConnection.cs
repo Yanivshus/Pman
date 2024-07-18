@@ -49,7 +49,7 @@ namespace Pman
             command1.ExecuteNonQuery();
 
             //main users passwords table.
-            query = "CREATE TABLE IF NOT EXISTS 'mainPasswords' ('username' TEXT,'website' TEXT,'webpass' TEXT,'webuser' TEXT, FOREIGN KEY('username') REFERENCES 'users'('username'));";
+            query = "CREATE TABLE IF NOT EXISTS 'mainPasswords' ('username' TEXT,'website' TEXT UNIQUE,'webpass' TEXT,'webuser' TEXT, FOREIGN KEY('username') REFERENCES 'users'('username'));";
             var command2 = new SQLiteCommand(query, conn);
             command2.ExecuteNonQuery();
         }
@@ -118,10 +118,17 @@ namespace Pman
             //encrypt both username and password using precreated key and iv.
             command.Parameters.AddWithValue("@webpass",Convert.ToBase64String(Encryption.Encrypt(password, key, iv)));
             command.Parameters.AddWithValue("@webuser", Convert.ToBase64String(Encryption.Encrypt(webuser, key, iv)));
-
-            var result = command.ExecuteNonQuery();
+            int res = 0;
+            try
+            {
+                res = command.ExecuteNonQuery();
+            }
+            catch (Exception ex) {
+                return 4;
+            }
+            
            
-            return result;
+            return res;
         }
 
         public List<passEntry> getPassEntryByUsername(string username, byte[] key, byte[] iv)

@@ -38,6 +38,10 @@ namespace Pman
             {
                 this.errB.Text = "failed to add password";
             }
+            else if(res == 4)
+            {
+                this.errB.Text = "Website password already exists";
+            }
             else
             {
                 this.errB.Text = "Password added";

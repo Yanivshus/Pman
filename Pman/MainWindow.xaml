@@ -12,6 +12,6 @@
         <Button Content="Login" HorizontalAlignment="Center" Margin="0,340,0,0" VerticalAlignment="Top" Height="36" Width="140" FontSize="20" Click="login" />
         <Button Content="Register" HorizontalAlignment="Center" Margin="0,403,0,0" VerticalAlignment="Top" Height="36" Width="140" FontSize="20" Click="signup" />
         <Button Content="forgot password? press to change" HorizontalAlignment="Center" Margin="0,292,0,0" VerticalAlignment="Top" Background="White" Foreground="#0000EE" Height="27" Width="240" FontSize="15" />
-        <TextBlock HorizontalAlignment="Center" Margin="0,478,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="42" Width="300" TextAlignment="Center" FontSize="20" Name="errB" />
+        <TextBlock HorizontalAlignment="Center" Margin="0,478,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="41" Width="531" TextAlignment="Center" FontSize="20" Name="errB" />
     </Grid>
 </Window>
