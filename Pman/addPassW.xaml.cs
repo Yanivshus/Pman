@@ -19,14 +19,29 @@ namespace Pman
     /// </summary>
     public partial class addPassW : Window
     {
-        public addPassW()
+        string username;
+        byte[] key;
+        byte[] iv;
+        public addPassW(string usernameA, byte[] keyA, byte[] ivA)
         {
             InitializeComponent();
+            username = usernameA;
+            key = keyA;
+            iv = ivA;
         }
 
         private void add(object sender, RoutedEventArgs e)
         {
-
+            dbConnection db = dbConnection.GetInstance();
+            var res = db.addPassword(username, this.usernameB.Text.ToString(),this.passwordB.Text.ToString() ,this.websiteB.Text.ToString(), key, iv);
+            if(res == 0)
+            {
+                this.errB.Text = "failed to add password";
+            }
+            else
+            {
+                this.errB.Text = "Password added";
+            }
         }
 
         private void back(object sender, RoutedEventArgs e)

@@ -29,12 +29,12 @@ namespace Pman
             username = usernameA;
             password = passwordA;
             key = Encryption.DeriveEncryptionKey(passwordA, saltA);
-            iv = Encryption.DeriveEncryptionKey(passwordA, saltA);
+            iv = Encryption.DeriveEncryptionIV(passwordA, saltA);
         }
 
         private void addPasword(object sender, RoutedEventArgs e)
         {
-            addPassW addW = new addPassW();
+            addPassW addW = new addPassW(username, key, iv);
             addW.Show();
         }
 

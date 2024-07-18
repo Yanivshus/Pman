@@ -108,7 +108,7 @@ namespace Pman
             return false;
         }
 
-        public int addPassword(string username, string password, string website, byte[] key, byte[] iv)
+        public int addPassword(string username, string webuser,string password, string website, byte[] key, byte[] iv)
         {
             string query = "INSERT INTO mainPasswords (username, website, webpass, webuser) VALUES(@username, @website, @webpass, @webuser);";
             var command = new SQLiteCommand(query, conn);
@@ -117,7 +117,7 @@ namespace Pman
             command.Parameters.AddWithValue("@website", website);
             //encrypt both username and password using precreated key and iv.
             command.Parameters.AddWithValue("@webpass",Convert.ToBase64String(Encryption.Encrypt(password, key, iv)));
-            command.Parameters.AddWithValue("@webuser", Convert.ToBase64String(Encryption.Encrypt(username, key, iv)));
+            command.Parameters.AddWithValue("@webuser", Convert.ToBase64String(Encryption.Encrypt(webuser, key, iv)));
 
             var result = command.ExecuteNonQuery();
            

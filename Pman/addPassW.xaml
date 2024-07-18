@@ -24,9 +24,9 @@
         <TextBox HorizontalAlignment="Left" Margin="33,64,0,0" TextWrapping="Wrap" Text="username" VerticalAlignment="Top" Width="264" Height="22" FontSize="15" x:Name="usernameB"/>
         <TextBox HorizontalAlignment="Left" Margin="33,91,0,0" TextWrapping="Wrap" Text="password" VerticalAlignment="Top" Width="264" Height="22" FontSize="15" x:Name="passwordB"/>
 
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="-0.74,4.071" Margin="33,125,0,0" Height="16" Width="264" TextAlignment="Center" FontSize="20" x:Name="errB"/>
-        <Button Content="add" HorizontalAlignment="Center" Margin="0,183,0,0" VerticalAlignment="Top" Click="add" Width="98" Height="30"/>
-        <Button Content="Back" HorizontalAlignment="Left" Margin="33,183,0,0" VerticalAlignment="Top" Height="30" Width="52" Click="back"/>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="-0.74,4.071" Margin="33,125,0,0" Height="16" Width="264" TextAlignment="Center" FontSize="13" x:Name="errB"/>
+        <Button Content="add" HorizontalAlignment="Center" Margin="0,168,0,0" VerticalAlignment="Top" Click="add" Width="98" Height="30"/>
+        <Button Content="Back" HorizontalAlignment="Left" Margin="33,168,0,0" VerticalAlignment="Top" Height="30" Width="52" Click="back"/>
 
 
 
