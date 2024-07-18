@@ -66,7 +66,7 @@ namespace Pman
 
         public int addUser(string username, string password , string email)
         {
-            user check = getUserDetailsByUsername (username);
+            user check = getUserDetailsByUsername(username);
             //check if user already exists.
             if(check.username != null)
             {

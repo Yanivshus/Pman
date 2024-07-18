@@ -30,6 +30,8 @@ namespace Pman
         {
             var signupW = new signup();
             signupW.Show();
+            signupW.Left = this.Left;
+            signupW.Top = this.Top;
             this.Close();
         }
 
@@ -47,7 +49,11 @@ namespace Pman
                 var ret = db.AuthenticateUser(userB.Text.ToString(), passB.Text.ToString());
                 if (ret)
                 {
-                    errB.Text = "succes";
+                    passWin next = new passWin(userB.Text.ToString(), passB.Text.ToString(), db.getUserDetailsByUsername(userB.Text.ToString()).salt);
+                    next.Left = this.Left;
+                    next.Top = this.Top;
+                    next.Show();
+                    this.Close();
                 }
                 else
                 {

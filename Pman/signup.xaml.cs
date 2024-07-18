@@ -28,6 +28,8 @@ namespace Pman
         {
 
             var main = new MainWindow();
+            main.Left = this.Left;
+            main.Top = this.Top;
             main.Show();
             this.Close();
         }
@@ -45,6 +47,7 @@ namespace Pman
             var res = db.addUser(usernameB.Text.ToString(),
                 passwordB.Text.ToString(),
                 emailB.Text.ToString());
+            
             if(res == 0) {
                 errB.Text = "Failed to add user";
             }
@@ -52,8 +55,6 @@ namespace Pman
             {
                 errB.Text = "user entered succefully";
             }
-                
-
         }
     }
 }
