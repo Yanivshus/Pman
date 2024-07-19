@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MaterialDesignThemes" Version="5.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" Version="8.0.7" />
     <PackageReference Include="System.Data.SQLite" Version="1.0.118" />
   </ItemGroup>

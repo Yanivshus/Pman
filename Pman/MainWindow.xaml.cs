@@ -38,18 +38,18 @@ namespace Pman
         private void login(object sender, RoutedEventArgs e)
         {
             if (userB.Text.ToString().Length <= 0 ||
-                passB.Text.ToString().Length <= 0)
+                passB.Password.ToString().Length <= 0)
             {
-                this.errB.Text = "err";
+                //this.errB.Text = "err";
             }
 
             else
             {
                 dbConnection db = dbConnection.GetInstance();
-                var ret = db.AuthenticateUser(userB.Text.ToString(), passB.Text.ToString());
+                var ret = db.AuthenticateUser(userB.Text.ToString(), passB.Password.ToString());
                 if (ret)
                 {
-                    passWin next = new passWin(userB.Text.ToString(), passB.Text.ToString(), db.getUserDetailsByUsername(userB.Text.ToString()).salt);
+                    passWin next = new passWin(userB.Text.ToString(), passB.Password.ToString(), db.getUserDetailsByUsername(userB.Text.ToString()).salt);
                     next.Left = this.Left;
                     next.Top = this.Top;
                     next.Show();
@@ -57,7 +57,7 @@ namespace Pman
                 }
                 else
                 {
-                    errB.Text = "Login failed! username or password are wrong.";
+                    //errB.Text = "Login failed! username or password are wrong.";
                 }
             }
         }
