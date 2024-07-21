@@ -55,5 +55,10 @@ namespace Pman
                 errB.Text = "user entered succefully";
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
