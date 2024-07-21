@@ -49,9 +49,9 @@
                 </Style>
             </Button.Style>
         </Button>
-        <TextBox HorizontalAlignment="Center" Margin="0,82,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" Height="37" Name="codeB" FontSize="20" TextAlignment="Center"/>
+        <TextBox HorizontalAlignment="Center" Margin="0,119,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" Height="40" Name="codeB" FontSize="20" TextAlignment="Center"/>
         <Button x:Name="Send_again" 
-            Click="verify"
+            Click="sendCodeAgain"
             Content="Send again" 
             Foreground="White"
             Background="#007ACC"
@@ -78,5 +78,6 @@
                 </Style>
             </Button.Style>
         </Button>
+        <TextBlock HorizontalAlignment="Center" Margin="0,86,0,0" TextWrapping="Wrap" Text="Enter code that sent to your mail box: " VerticalAlignment="Top" Height="18" Width="213"/>
     </Grid>
 </Window>

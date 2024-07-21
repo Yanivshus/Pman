@@ -49,7 +49,22 @@ namespace Pman
 
         private void verify(object sender, RoutedEventArgs e)
         {
-            sendCode();
+            if(this.codeB.Text.ToString() == codeCurr)
+            {
+                passWin next = new passWin(username, password, salt);
+                next.Left = this.Left;
+                next.Top = this.Top;
+                next.Show();
+                this.Close();
+            }
+            else
+            {
+                MainWindow next = new MainWindow();
+                next.Left = this.Left;
+                next.Top = this.Top;
+                next.Show();
+                this.Close();
+            }
         }
         private async void sendCode()
         {
@@ -59,7 +74,12 @@ namespace Pman
             codeCurr = code;
 
             var emailService = new EmailService(emailSettings);
-            await emailService.SendEmailAsync(email, "Test", code);
+            await emailService.SendEmailAsync(email, "Your verification code: ", code);
+        }
+
+        private void sendCodeAgain(object sender, RoutedEventArgs e)
+        {
+            sendCode();
         }
     }
 }

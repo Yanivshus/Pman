@@ -49,7 +49,7 @@ namespace Pman
             command1.ExecuteNonQuery();
 
             //main users passwords table.
-            query = "CREATE TABLE IF NOT EXISTS 'mainPasswords' ('username' TEXT,'website' TEXT UNIQUE,'webpass' TEXT,'webuser' TEXT, FOREIGN KEY('username') REFERENCES 'users'('username'));";
+            query = "CREATE TABLE IF NOT EXISTS 'mainPasswords' ('username' TEXT,'website' TEXT ,'webpass' TEXT,'webuser' TEXT, FOREIGN KEY('username') REFERENCES 'users'('username'));";
             var command2 = new SQLiteCommand(query, conn);
             command2.ExecuteNonQuery();
         }
@@ -110,6 +110,16 @@ namespace Pman
 
         public int addPassword(string username, string webuser,string password, string website, byte[] key, byte[] iv)
         {
+            // check if a website password already exists.
+            List<passEntry> formerPasses = getPassEntryByUsername(username, key, iv);
+            foreach (passEntry passEntry in formerPasses)
+            {
+                if(passEntry.website == website)
+                {
+                    return 4;
+                }
+            }
+
             string query = "INSERT INTO mainPasswords (username, website, webpass, webuser) VALUES(@username, @website, @webpass, @webuser);";
             var command = new SQLiteCommand(query, conn);
 
@@ -118,16 +128,7 @@ namespace Pman
             //encrypt both username and password using precreated key and iv.
             command.Parameters.AddWithValue("@webpass",Convert.ToBase64String(Encryption.Encrypt(password, key, iv)));
             command.Parameters.AddWithValue("@webuser", Convert.ToBase64String(Encryption.Encrypt(webuser, key, iv)));
-            int res = 0;
-            try
-            {
-                res = command.ExecuteNonQuery();
-            }
-            catch (Exception ex) {
-                return 4;
-            }
-            
-           
+            int res = command.ExecuteNonQuery();
             return res;
         }
 
@@ -149,7 +150,6 @@ namespace Pman
 
                 pList.Add(curr);
             }
-
             return pList;
         }
     }
