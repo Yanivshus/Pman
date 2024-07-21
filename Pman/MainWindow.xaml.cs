@@ -49,7 +49,7 @@ namespace Pman
                 var ret = db.AuthenticateUser(userB.Text.ToString(), passB.Password.ToString());
                 if (ret)
                 {
-                    passWin next = new passWin(userB.Text.ToString(), passB.Password.ToString(), db.getUserDetailsByUsername(userB.Text.ToString()).salt);
+                    _2faVerW next = new _2faVerW(userB.Text.ToString(), passB.Password.ToString(), db.getUserDetailsByUsername(userB.Text.ToString()).salt);
                     next.Left = this.Left;
                     next.Top = this.Top;
                     next.Show();

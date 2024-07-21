@@ -8,8 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MailKit" Version="4.7.1.1" />
+    <PackageReference Include="MailKitSimplified.Sender" Version="2.10.0" />
     <PackageReference Include="MaterialDesignThemes" Version="5.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" Version="8.0.7" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
     <PackageReference Include="System.Data.SQLite" Version="1.0.118" />
   </ItemGroup>
 
