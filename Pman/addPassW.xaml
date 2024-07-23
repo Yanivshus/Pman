@@ -1,0 +1,34 @@
+﻿<Window x:Class="Pman.addPassW"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Pman"
+        mc:Ignorable="d"
+        Title="Add pass" Height="250" Width="350">
+    <Window.Resources>
+        <!-- Define styles for Button -->
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="Background" Value="#007ACC" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <TextBox HorizontalAlignment="Left" Margin="33,37,0,0" TextWrapping="Wrap" Text="website" VerticalAlignment="Top" Width="264" Height="22" FontSize="15" x:Name="websiteB"/>
+        <TextBox HorizontalAlignment="Left" Margin="33,64,0,0" TextWrapping="Wrap" Text="username" VerticalAlignment="Top" Width="264" Height="22" FontSize="15" x:Name="usernameB"/>
+        <TextBox HorizontalAlignment="Left" Margin="33,91,0,0" TextWrapping="Wrap" Text="password" VerticalAlignment="Top" Width="264" Height="22" FontSize="15" x:Name="passwordB"/>
+
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="-0.74,4.071" Margin="33,125,0,0" Height="16" Width="264" TextAlignment="Center" FontSize="13" x:Name="errB"/>
+        <Button Content="add" HorizontalAlignment="Center" Margin="0,168,0,0" VerticalAlignment="Top" Click="add" Width="98" Height="30"/>
+        <Button Content="Back" HorizontalAlignment="Left" Margin="33,168,0,0" VerticalAlignment="Top" Height="30" Width="52" Click="back"/>
+
+
+
+    </Grid>
+</Window>
