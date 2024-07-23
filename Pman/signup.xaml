@@ -6,14 +6,92 @@
         xmlns:local="clr-namespace:Pman"
         mc:Ignorable="d"
         Title="signup" Height="600" Width="800">
-    <Grid>
-        <TextBox HorizontalAlignment="Center" Margin="0,180,0,0" TextWrapping="Wrap" Text="username" VerticalAlignment="Top" Width="300" Height="39" FontSize="20" Name="usernameB"/>
-        <TextBox HorizontalAlignment="Center" Margin="0,234,0,0" TextWrapping="Wrap" Text="password" VerticalAlignment="Top" Width="300" Height="39" FontSize="20" Name="passwordB"/>
-        <TextBox HorizontalAlignment="Center" Margin="0,292,0,0" TextWrapping="Wrap" Text="email" VerticalAlignment="Top" Width="300" Height="39" FontSize="20" Name="emailB"/>
-
-        <Button Content="Sign up" HorizontalAlignment="Center" Margin="0,370,0,0" VerticalAlignment="Top" Height="36" Width="140" FontSize="20" Click="addUser"/>
-        <Button Content="Back" HorizontalAlignment="Left" Margin="61,482,0,0" VerticalAlignment="Top" Height="36" Width="140" FontSize="20" Click="back"/>
-        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="-0.74,4.071" Margin="0,336,0,0" Height="29" Width="300" TextAlignment="Center" FontSize="20" Name="errB"/>
-
-    </Grid>
+    <Border Width="300"
+     Height="450"
+     Background="White"
+     CornerRadius="6">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="15"
+                       Direction ="-90" 
+                       RenderingBias ="Quality" 
+                       ShadowDepth ="2" 
+                       Color ="Gray" />
+        </Border.Effect>
+        <StackPanel Orientation="Vertical"
+             Margin="20">
+            <TextBlock Text="Register" 
+                FontSize="25"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                FontWeight="Bold"
+                Padding="10"
+                />
+            <Grid VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="User Name" 
+            Grid.Row="0"
+            Margin="0,15"
+            HorizontalAlignment="Left"/>
+                <TextBox  Grid.Column="1"
+           Grid.Row="1"
+           Padding="0,5"
+           Width="255"
+           BorderThickness="0,0,0,1"
+           HorizontalAlignment="Left"
+           Text=""
+           Name="usernameB"/>
+                <TextBlock Text="Password" 
+            Grid.Row="2"
+            Margin="0,15"
+            HorizontalAlignment="Left"/>
+                <PasswordBox Grid.Row="3"
+               Password=""
+               Padding="0,5"                           
+               Width="255"
+               BorderThickness="0,0,0,1"
+               HorizontalAlignment="Left"
+               Name="passwordB"/>
+            </Grid>
+            <TextBlock Text="Email" Height="31" Padding="0,5" Width="260"/>
+            <TextBox TextWrapping="Wrap" Text="" Width="256" Height="32" Padding="0,5" BorderThickness="0,0,0,1"
+               HorizontalAlignment="Left" Name="emailB"/>
+            <TextBlock TextWrapping="Wrap" Text="" TextAlignment="Center" Name="errB"/>
+            <Button x:Name="signupBtn" 
+             Click="addUser"
+             Content="Sign up" 
+             Foreground="White"
+             Background="#007ACC"
+             Margin="0,25"
+             Height="35"
+             Width="250">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border x:Name="LoginBorder" Background="{TemplateBinding Background}"
+                                     CornerRadius="16">
+                                        <ContentPresenter HorizontalAlignment="Center" 
+                                                   VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="AliceBlue" TargetName="LoginBorder"  />
+                                            <Setter Property="TextBlock.Foreground" Value="Black"  TargetName="LoginBorder" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Content="Back" BorderThickness="0" Background="White" Click="back"/>
+        </StackPanel>
+    </Border>
 </Window>

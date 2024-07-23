@@ -36,7 +36,7 @@ namespace Pman
         private void addUser(object sender, RoutedEventArgs e)
         {
             if(usernameB.Text.ToString().Length <= 0 ||
-                passwordB.Text.ToString().Length <= 0 ||
+                passwordB.Password.ToString().Length <= 0 ||
                 emailB.Text.ToString().Length <= 0) 
             {
                 this.errB.Text = "err";
@@ -44,7 +44,7 @@ namespace Pman
 
             dbConnection db = dbConnection.GetInstance();
             var res = db.addUser(usernameB.Text.ToString(),
-                passwordB.Text.ToString(),
+                passwordB.Password.ToString(),
                 emailB.Text.ToString());
             
             if(res == 0) {
@@ -54,11 +54,6 @@ namespace Pman
             {
                 errB.Text = "user entered succefully";
             }
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
